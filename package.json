@@ -15,6 +15,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build/ s3://serverless-scratch-client --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id E1XKWQ3B7D4N79 --paths /* && aws cloudfront create-invalidation --distribution-id E1741M5CVERLIX --paths /*",
     "eject": "react-scripts eject"
   }
 }
